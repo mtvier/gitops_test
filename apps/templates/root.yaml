@@ -28,7 +28,7 @@ spec:
   destination:
     server: https://kubernetes.default.svc
     namespace: my_k8s_service
-  project: default
+  project: my_k8s_service
   source:
     path: mysql/
     repoURL: https://github.com/mtvier/my_k8s_service.git
