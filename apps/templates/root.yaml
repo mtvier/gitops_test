@@ -30,7 +30,7 @@ spec:
     namespace: my-k8s-service
   project: default
   source:
-    path: mysql/
+    path: apps/
     repoURL: https://github.com/mtvier/my-k8s-service.git
     targetRevision: HEAD
   syncPolicy:
