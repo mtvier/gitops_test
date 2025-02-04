@@ -1,20 +1,32 @@
 apiVersion: argoproj.io/v1alpha1
-kind: Application
+kind: ApplicationSet
 metadata:
-  name: root
-  finalizers:
-  - resources-finalizer.argocd.argoproj.io
+  name: root-applicationset
 spec:
-  destination:
-    server: https://kubernetes.default.svc
-    namespace: default
-  project: default
-  source:
-    path: apps/
-    repoURL: https://github.com/mtvier/gitops_test.git
-    targetRevision: HEAD
-  syncPolicy:
-    automated:
-      prune: true
-      selfHeal: true
-
+  generators:
+  - list:
+      elements:
+      - name: gitops-test
+        repoURL: https://github.com/mtvier/gitops_test.git
+        path: apps/
+        namespace: default
+      - name: mysql-cluster
+        repoURL: https://github.com/mtvier/my_k8s_service.git
+        path: apps/
+        namespace: my_k8s_service
+  template:
+    metadata:
+      name: '{{name}}'
+    spec:
+      project: default
+      source:
+        repoURL: '{{repoURL}}'
+        targetRevision: HEAD
+        path: '{{path}}'
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: '{{namespace}}'
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
