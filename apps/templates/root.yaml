@@ -6,17 +6,17 @@ spec:
   generators:
   - list:
       elements:
-      - name: gitops-test
+      - appName: gitops-test
         repoURL: https://github.com/mtvier/gitops_test.git
         path: apps/
         namespace: default
-      - name: mysql-cluster
+      - appName: mysql-cluster
         repoURL: https://github.com/mtvier/my_k8s_service.git
         path: apps/
         namespace: my_k8s_service
   template:
     metadata:
-      name: '{{name}}'
+      name: '{{appName}}'
     spec:
       project: default
       source:
