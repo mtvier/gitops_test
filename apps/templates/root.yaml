@@ -21,17 +21,17 @@ spec:
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: my_k8s_service
+  name: my-k8s-service
   finalizers:
   - resources-finalizer.argocd.argoproj.io
 spec:
   destination:
     server: https://kubernetes.default.svc
-    namespace: my_k8s_service
-  project: my_k8s_service
+    namespace: my-k8s-service
+  project: default
   source:
     path: mysql/
-    repoURL: https://github.com/mtvier/my_k8s_service.git
+    repoURL: https://github.com/mtvier/my-k8s-service.git
     targetRevision: HEAD
   syncPolicy:
     automated:
