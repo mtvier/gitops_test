@@ -11,7 +11,7 @@ spec:
   project: default
   source:
     path: apps/
-    repoURL: https://github.com/AlexanderWiechert/argocd-prometheus-example.git
+    repoURL: https://github.com/mtvier/gitops_test.git
     targetRevision: HEAD
   syncPolicy:
     automated:
